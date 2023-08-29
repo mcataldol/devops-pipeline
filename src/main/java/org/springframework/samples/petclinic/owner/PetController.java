@@ -21,6 +21,8 @@ import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.validation.Valid;
 import java.util.Collection;
@@ -35,7 +37,8 @@ import java.util.Collection;
 class PetController {
 
 	private static final String VIEWS_PETS_CREATE_OR_UPDATE_FORM = "pets/createOrUpdatePetForm";
-
+	private static final Logger log = LoggerFactory.getLogger(PetController.class);
+	
 	private final OwnerRepository owners;
 
 	public PetController(OwnerRepository owners) {
@@ -78,10 +81,13 @@ class PetController {
 
 	@PostMapping("/pets/new")
 	public String processCreationForm(Owner owner, @Valid Pet pet, BindingResult result, ModelMap model) {
+		log.info("Inicia proceso de nueva mascota");
 		if (StringUtils.hasLength(pet.getName()) && pet.isNew() && owner.getPet(pet.getName(), true) != null) {
 			result.rejectValue("name", "duplicate", "already exists");
 		}
+		log.info("Consulta API Mascotas");
 		owner.addPet(pet);
+		log.info("Termina proceso de nueva mascota");
 		if (result.hasErrors()) {
 			model.put("pet", pet);
 			return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
