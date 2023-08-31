@@ -2,7 +2,7 @@ FROM openjdk:11-jre
 
 EXPOSE 8085
 
-ADD spring-petclinic-2.6.0.jar /app/spring-petclinic-2.6.0.jar
+ADD build/libs/spring-petclinic-2.6.0.jar /app/spring-petclinic-2.6.0.jar
 
 WORKDIR /app
 
