@@ -4,5 +4,5 @@ on: [push]
 
 jobs: 
   call-pipeline:
-    uses: mcataldol/devops-pipeline/devops-pipeline/.github/workflows/pipeline.yml@feature-pipeline
+    uses: mcataldol/devops-pipeline/devops-pipeline/.github/workflows/pipeline.yml@feature-add-pipeline
     secrets: inherit
