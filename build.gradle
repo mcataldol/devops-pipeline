@@ -39,9 +39,10 @@ dependencies {
 
 sonar {
   properties {
-    property "sonar.projectKey", "mcataldol"
-    property "sonar.organization", "mcataldol"
+    property "sonar.projectKey", "Devops-Fundamentos-v5_pet-clinic"
+    property "sonar.organization", "devops-fundamentos-v5"
     property "sonar.host.url", "https://sonarcloud.io"
+    property "sonar.projectName", "pet-clinic"
 }
 }
 
